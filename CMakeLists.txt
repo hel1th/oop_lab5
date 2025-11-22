@@ -1,0 +1,24 @@
+add_library(laba5_lib
+        fixed_memory.cpp
+        forward_list.h
+        fixed_memory.h
+)
+
+target_include_directories(laba5_lib PUBLIC
+        ${CMAKE_CURRENT_SOURCE_DIR}
+)
+
+target_compile_features(laba5_lib PUBLIC cxx_std_20)
+
+
+add_executable(laba5_exe main.cpp)
+
+target_link_libraries(laba5_exe PRIVATE laba5_lib)
+target_compile_features(laba5_exe PRIVATE cxx_std_20)
+
+add_executable(laba5_tests tests/tests5.cpp)
+
+target_link_libraries(laba5_tests PRIVATE laba5_lib gtest_main)
+target_compile_features(laba5_tests PRIVATE cxx_std_20)
+
+add_test(NAME laba5_tests COMMAND laba5_tests)
